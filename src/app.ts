@@ -5,6 +5,7 @@ import { authMiddleware } from './middleware/auth'
 import { rateLimitMiddleware } from './middleware/rateLimit'
 import v1 from './routes'
 import { landingHtml } from './landing'
+import { openapiSpec } from './openapi'
 
 const app = new Hono()
 
@@ -37,6 +38,7 @@ app.use('/v1/*', async (c, next) => {
 app.route('/v1', v1)
 
 app.get('/', (c) => c.html(landingHtml))
+app.get('/openapi.json', (c) => c.json(openapiSpec))
 
 app.notFound((c) =>
   c.json({

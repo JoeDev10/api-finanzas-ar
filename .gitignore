@@ -7,3 +7,6 @@ server.err
 .DS_Store
 .vercel
 vdev.log
+
+# Generated — rebuilt by npm run build
+src/landing.ts
