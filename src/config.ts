@@ -9,6 +9,7 @@ export const CONFIG = {
   SUPABASE_URL: process.env.SUPABASE_URL ?? '',
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY ?? '',
   ADMIN_API_KEY: process.env.ADMIN_API_KEY ?? '',
+  RAPIDAPI_PROXY_SECRET: process.env.RAPIDAPI_PROXY_SECRET ?? '',
 
   RATE_LIMIT: {
     ANONYMOUS:  { requests: 30,     windowMs: 60_000 },

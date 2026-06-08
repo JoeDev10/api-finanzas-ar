@@ -3,9 +3,11 @@ import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
 import { authMiddleware } from './middleware/auth'
 import { rateLimitMiddleware } from './middleware/rateLimit'
+import { rapidapiMiddleware } from './middleware/rapidapi'
 import v1 from './routes'
 import { landingHtml } from './landing'
 import { openapiSpec } from './openapi'
+import { postmanCollection } from './postman'
 
 const app = new Hono()
 
@@ -17,6 +19,7 @@ app.use('*', cors({
   exposeHeaders: ['x-ratelimit-limit', 'x-ratelimit-remaining'],
 }))
 
+app.use('*', rapidapiMiddleware)
 app.use('/v1/*', authMiddleware)
 app.use('/v1/*', rateLimitMiddleware)
 
@@ -39,6 +42,10 @@ app.route('/v1', v1)
 
 app.get('/', (c) => c.html(landingHtml))
 app.get('/openapi.json', (c) => c.json(openapiSpec))
+app.get('/postman.json', (c) => {
+  c.header('Content-Disposition', 'attachment; filename="api-finanzas-ar.postman_collection.json"')
+  return c.json(postmanCollection)
+})
 
 app.notFound((c) =>
   c.json({

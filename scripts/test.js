@@ -12,9 +12,10 @@ const BASE = process.env.BASE_URL ?? 'https://api-finanzas-ar.vercel.app'
 
 const cases = [
   // ── Status & docs
-  { path: '/',             want: 200, label: 'Landing page (HTML)' },
-  { path: '/openapi.json', want: 200, label: 'OpenAPI spec' },
-  { path: '/v1/status',    want: 200, label: 'Status endpoint' },
+  { path: '/',              want: 200, label: 'Landing page (HTML)' },
+  { path: '/openapi.json',  want: 200, label: 'OpenAPI spec' },
+  { path: '/postman.json',  want: 200, label: 'Postman collection' },
+  { path: '/v1/status',     want: 200, label: 'Status endpoint' },
 
   // ── Dólar
   { path: '/v1/dolar',                         want: 200, label: 'Dólar — todos' },
